@@ -30,13 +30,15 @@ Route::get('/', function () {
 
 // Agar hanya bisa dibuka ketika sudah login 
  Route::middleware(['auth'])->group(function () {
+    // Checkout routes
     Route::get('checkout/success', [CheckoutController::class, 'success' ])->name('checkout.success');
     Route::get('checkout/{camp:slug}', [CheckoutController::class, 'create'])->name('checkout.create');
     Route::post('checkout/{camp}' , [CheckoutController::class, 'store'])->name('checkout.store');
-    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-});
-    // checkout routes
 
+    // user dashboard
+    Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('dashboard/checkout/invoice/{checkout}', [CheckoutController::class, 'invoice'])->name('user.checkout.invoice');
+});
 
 
 // Socialite routes
