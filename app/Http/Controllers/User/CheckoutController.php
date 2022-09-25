@@ -12,7 +12,7 @@ use App\Mail\Checkout\AfterCheckout;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Mail;
-use Psy\Util\Str;
+use Str;
 use Midtrans;
 
 
@@ -141,7 +141,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * Midtrans
+     * Midtrans Handler
      */
     public function getSnapRedirect(Checkout $checkout){
         
@@ -155,7 +155,7 @@ class CheckoutController extends Controller
             "gross_amount" => $price       
         ];
 
-        $item_details = [
+        $item_details []= [
             "id" => $orderId,
             "price" => $price,
             "quantity" => 1,
@@ -189,7 +189,7 @@ class CheckoutController extends Controller
 
         try{
             // Get Snap Payment Page URL
-            $paymentUrl = \Midtrans\Snap::createTransaction($$midtrans_params)->redirect_url;
+            $paymentUrl = \Midtrans\Snap::createTransaction($midtrans_params)->redirect_url;
             $checkout->midtrans_url = $paymentUrl;
             $checkout->save();
 
@@ -201,7 +201,7 @@ class CheckoutController extends Controller
     
     public function midtransCallback(Request $request)
     {
-        $notif = new Midtrans\Notification();
+        $notif = $request->method() == 'POST' ? new Midtrans\Notification() : Midtrans\Transaction::status($request->order_id);
 
         $transaction_status = $notif->transaction_status;
         $fraud = $notif->fraud_status;
