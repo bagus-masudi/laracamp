@@ -23,6 +23,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+// Socialite routes
+Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');
+Route::get('auth/google/callback', [UserController::class, 'handleProviderCallback'])->name('user.google.callback');
+
+// Midtrans routes
+Route::get('payment/success', [UserController::class, 'midtransCallback']);
+Route::post('payment/success', [UserController::class, 'midtransCallback']);
+
 // Route::get('checkout/{camp:slug}', function () {
 //    return view('checkout');
 // })->name('checkout');
@@ -56,12 +64,6 @@ Route::get('/', function () {
 
     Route::get('dashboard/checkout/invoice/{checkout}', [CheckoutController::class, 'invoice'])->name('user.checkout.invoice');
 });
-
-
-// Socialite routes
-Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');
-Route::get('auth/google/callback', [UserController::class, 'handleProviderCallback'])->name('user.google.callback');
-
 
  
 //Route::get('/dashboard', function () {
