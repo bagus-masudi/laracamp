@@ -314,6 +314,15 @@ body {
   height: 30px;
 }
 
+.rowr{
+  display: flex;
+}
+
+.item-benefit{
+  text-align: start;
+  margin-left: 40px;
+}
+
 .dashboard .table tr {
   border: 1px solid #fff;
 }
@@ -388,3 +397,44 @@ body {
   height: 42px;
 }
 /*# sourceMappingURL=main.css.map */
+
+@media screen and (max-width: 450px) {
+
+.left{
+  display: none;
+}
+
+.right .header-third{
+  width: 200px;
+  position: absolute;
+  display: flex;
+}
+
+.subheader{
+  margin-top: 30px;
+  width: 150px;
+  position: absolute;
+}
+
+.right .button{
+  margin-left: 250px;
+  margin-top: -50px;
+}
+
+.brands img{
+  width: 400px;
+}
+.rowr{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0px 20px;
+}
+.item-benefit{
+  max-width: 180px;
+  margin-left: 0px;
+}
+.testimonials{
+  margin-top: 1250px;
+}
+}

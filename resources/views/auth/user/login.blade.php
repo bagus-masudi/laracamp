@@ -34,7 +34,7 @@
             <p class="subheader">
                 Because tomorrow become never
             </p>
-            <p>
+            <p class="button">
                 <a class="btn btn-border btn-google-login" href="{{route('user.login.google')}}">
                     <img src="{{asset('images/ic_google.svg')}}" class="icon" alt=""> Sign In with Google
                 </a>
