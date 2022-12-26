@@ -69,7 +69,7 @@ class CheckoutController extends Controller
         $data['camp_id'] = $camp->id;
 
         // Update user data
-        $user = Auth::user(); // Mengambil tabel user
+        $user = Auth::user(); // Mengambil data user
         $user->email = $data['email'];
         $user->name = $data['name'];
         $user->occupation = $data['occupation'];
